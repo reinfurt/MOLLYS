@@ -1,0 +1,6 @@
+# database settings
+systemDatabase.php
+config.php
+
+# backup files
+*~

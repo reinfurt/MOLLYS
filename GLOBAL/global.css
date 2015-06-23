@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'cosmos-regular';
+    src: url('fonts/cosmos-regular-webfont.eot');
+    src: url('fonts/cosmos-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cosmos-regular-webfont.woff2') format('woff2'),
+         url('fonts/cosmos-regular-webfont.woff') format('woff'),
+         url('fonts/cosmos-regular-webfont.ttf') format('truetype'),
+         url('fonts/cosmos-regular-webfont.svg#cosmosregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+}
+
+body {
+	font-family: cosmos-regular, Helvetica, Arial,sans-serif;
+}
+#page {
+	padding: 10px;
+}
+header {
+	font-size: 36px;
+	letter-spacing: -1.25px;
+}
+
+/* link styles */
+a:link,
+a:visited {
+	text-decoration: none;
+	color: black;
+}
+a.r:hover {
+	color: #FB3139;
+}
+a.b:hover {
+	color: #5386F0;
+}
+a.y:hover {
+	color: #FED71B;
+}
+a:active {
+}
