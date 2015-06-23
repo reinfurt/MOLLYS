@@ -1,6 +1,7 @@
 <?
 $pageName = basename(__FILE__, ".php");
 require_once("GLOBAL/head.php");
+require_once("lib/displayMedia.php");
 
 $rootid = $ids[0];
 
@@ -16,7 +17,9 @@ if(!$id)
 				o.end,
 				m.id AS mediaId,
 				m.type,
-				m.caption
+				m.caption,
+				m.active as mediaActive,
+				m.rank
 			FROM
 				(SELECT *
 				FROM objects
@@ -59,17 +62,63 @@ else
 }
 
 $result = MYSQL_QUERY($sql);
-// //$myrow = MYSQL_FETCH_ARRAY($result);
-// //$vars = array('rootname', 'name1', 'body', 'notes', 'begin', 'end');
-// foreach($vars as $v)
-// 	$$v = nl2br($myrow[$v]);
+$images[] = "";
+$image_files[] = "";
+$caption[] = "";
+$i = 0; 
+$u = 'http://mollymcivermanufacturing.us/';
 
 while($myrow = MYSQL_FETCH_ARRAY($result))
 {
-	echo "<br>+++++++++++++++++++++++++<br>";
-	foreach($myrow as $key => $value)
-		if($value)
-			echo $key.": ".$myrow[$key]."<br>";
+	if($myrow['mediaActive'] != null)
+	{
+		$m_file = "MEDIA/";
+		$m_file.= str_pad($myrow["mediaId"], 5, "0", STR_PAD_LEFT);
+		$m_file.= ".".$myrow["type"];
+		$m_caption = strip_tags($myrow["caption"]);
+		$m_style = "width: 100%;";
+		$image_files[$i] = $m_file;
+		$captions[$i] = $m_caption;
+		
+		// build random styles
+		$randomPadding = rand(0, 15);
+		$randomPadding *= 10;
+		$randomWidth = rand(4, 7);
+		$randomWidth *= 10;
+		$randomFloat = (rand(0, 1) == 0) ? 'left' : 'right';
+		$icStyle = 'width:'.$randomWidth.'%; ';
+		$icStyle .= 'float:'.$randomFloat.'; ';
+		$icStyle .= 'padding-top:'.$randomPadding.'px; ';
+		$icStyle .= 'margin: 40px;'; 
+
+		$images[$i] .= "<div ";
+		$images[$i] .= "id='image".$i."' ";
+		$images[$i] .= "style='".$icStyle."' ";
+		$images[$i] .= ">";
+		
+		$images[$i].= "<a ";
+		$images[$i].= "href='$u?id=".$myrow['objectsId']."'";
+		$images[$i].= "class='img-container' ";
+		$images[$i].= ">";
+		$images[$i].= displayMedia($m_file, $m_caption, $m_style);
+		$images[$i].= "</a>";
+		
+		$images[$i].= "<div class='caption'>";
+		$images[$i].= $myrow['name1'];
+		$images[$i].= "</div>";
+		$images[$i].= "</div>";
+	}
+	$i++;
+}
+
+if(count($images) > 0)
+{
+?><div><?
+$html = "";
+for($i = 0; $i < count($images); $i++)
+	$html.= $images[$i];
+echo $html;
+?></div><?
 }
 require_once("GLOBAL/foot.php");
 ?>

@@ -24,6 +24,13 @@ header {
 	letter-spacing: -1.25px;
 }
 
+.caption {
+	visibility: hidden; 
+}
+a.img-container:hover + .caption {
+	visibility: visible;
+}
+
 /* link styles */
 a:link,
 a:visited {
