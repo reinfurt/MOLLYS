@@ -9,29 +9,33 @@
                 context = canvas.getContext("2d");
                 centerX = canvas.width / 2;
                 centerY = canvas.height / 2;
-                // context.fillStyle = "black";
                 context.lineWidth = 3;
 
-		console.log("hello");
+		context.strokeStyle = "#000";
+
+		// debug
+
 		console.log(canvas);
 		console.log(context);
+		
+		// draw lines
 
-		context.strokeStyle = "#ff0000";
+		// context.strokeStyle = "#ff0000";
 		context.beginPath();
 		context.moveTo(0,0);
 		context.lineTo(100,100);
 		context.stroke();
 
-		context.strokeStyle = "#0000ff";
-		context.beginPath();
-		context.moveTo(0,100);
-		context.lineTo(100,0);
-		context.stroke();
-
-		context.strokeStyle = "#ffff00";
+		// context.strokeStyle = "#0000ff";
 		context.beginPath();
 		context.moveTo(100,0);
 		context.lineTo(200,100);
+		context.stroke();
+
+		// context.strokeStyle = "#ffff00";
+		context.beginPath();
+		context.moveTo(200,0);
+		context.lineTo(300,100);
 		context.stroke();
 
 		/*
