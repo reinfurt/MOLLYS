@@ -20,22 +20,22 @@
 		
 		// draw lines
 
-		// context.strokeStyle = "#ff0000";
+		context.strokeStyle = "#ff0000";
 		context.beginPath();
 		context.moveTo(0,0);
-		context.lineTo(100,100);
+		context.lineTo(50,50);
 		context.stroke();
 
-		// context.strokeStyle = "#0000ff";
+		context.strokeStyle = "#0000ff";
+		context.beginPath();
+		context.moveTo(50,0);
+		context.lineTo(100,50);
+		context.stroke();
+
+		context.strokeStyle = "#ffff00";
 		context.beginPath();
 		context.moveTo(100,0);
-		context.lineTo(200,100);
-		context.stroke();
-
-		// context.strokeStyle = "#ffff00";
-		context.beginPath();
-		context.moveTo(200,0);
-		context.lineTo(300,100);
+		context.lineTo(150,50);
 		context.stroke();
 
 		/*
