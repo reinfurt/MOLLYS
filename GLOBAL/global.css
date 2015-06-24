@@ -16,11 +16,9 @@ html {
 body {
 	font-family: cosmos-regular, Helvetica, Arial,sans-serif;
 }
-#page {
-	padding: 10px;
-}
+
 header {
-	font-size: 36px;
+	font-size: 48px;
 	letter-spacing: -1.25px;
 }
 
@@ -48,3 +46,20 @@ a.y:hover {
 }
 a:active {
 }
+
+
+/* ids */
+
+#page {
+	padding: 10px;
+}
+
+#name {
+	position: fixed;
+}
+
+#mark {
+	position: fixed;
+	bottom: 10px;
+}
+

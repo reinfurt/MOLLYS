@@ -33,6 +33,6 @@ $doc_title = 'mmm';
 	</head>
 	<body>
 		<div id="page">
-			<header>
+			<header id="name">
 				<a class="r" href="http://mollymcivermanufacturing.us/">mollys</a>
 			</header>
