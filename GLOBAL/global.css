@@ -60,6 +60,8 @@ a:active {
 
 #mark {
 	position: fixed;
-	bottom: 10px;
+	bottom: 15px;	
+	height: 100px;
+	width: 500px;
 }
 
