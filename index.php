@@ -122,7 +122,8 @@ $html = "";
 for($i = 0; $i < count($images); $i++)
 	$html.= $images[$i];
 echo $html;
-?></div><?
+?></div>
+<div id="body"><? echo nl2br($obj['body']); ?></div><?
 }
 require_once("GLOBAL/foot.php");
 ?>

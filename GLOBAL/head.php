@@ -26,10 +26,10 @@ if(!$dev)
 // document header
 $doc_title = 'mmm';
 
-$sql = "SELECT name1 from objects where id = $id";
+$sql = "SELECT * from objects where id = $id";
 $res = MYSQL_QUERY($sql);
-$row = MYSQL_FETCH_ARRAY($res);
-$name = $row['name1'] ? $row['name1'] : "mollys";
+$obj = MYSQL_FETCH_ARRAY($res);
+$name = $obj['name1'] ? $obj['name1'] : "mollys";
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -42,13 +42,14 @@ $name = $row['name1'] ? $row['name1'] : "mollys";
 	<body onload="initX();">
 		<div id="page">
 			<header id="menu">
-				<div id="menu-base">
-					<a href="<? echo $host; ?>"><? echo $name; ?></a>
+				<div id="menu-base"><?
+					echo $name;
+					if($id)
+						echo "<br>mollys"; ?>
 				</div>
 				<div id="menu-hover">
-					<a href="<? echo $host; ?>">molly<br>
-					mciver<br>
-					mfg.<br>
+					<a href="<? echo $host; ?>">molly<br>mciver<br>mfg.</a>
+					<br>
 					<br>
 					<div style="display: inline-block;"><? 
 						displayNavigation(); 

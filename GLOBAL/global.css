@@ -45,22 +45,7 @@ a.y:hover {
 a:active {
 }
 
-.menuItemContainer:nth-of-type(3n+0) > a:hover {
-	color: #ff0000;
-}
-
-.menuItemContainer:nth-of-type(3n+1) > a:hover {
-	color: #0000ff;
-}
-
-.menuItemContainer:nth-of-type(3n+2) > a:hover {
-	color: #FED71B;
-}
-/* ids */
-
-#page {
-	padding: 10px;
-}
+/* header */
 
 header {
 	font-size: 48px;
@@ -80,6 +65,25 @@ header {
 	visibility: hidden;
 }
 
+.menuItemContainer:nth-of-type(3n+0) > a:hover {
+	color: #ff0000;
+}
+
+.menuItemContainer:nth-of-type(3n+1) > a:hover {
+	color: #0000ff;
+}
+
+.menuItemContainer:nth-of-type(3n+2) > a:hover {
+	color: #FED71B;
+}
+
+/* ids */
+#page {
+	padding: 10px;
+}
+
+
+
 #mark {
 	position: fixed;
 	bottom: 15px;	
@@ -87,11 +91,31 @@ header {
 	width: 500px;
 }
 
+#body {
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 @media screen and (max-device-width: 568px) {
 	#menu {
 		font-size: 40px;
 		letter-spacing: -1.5px;
-		position: relative;
+		position: static;
 		line-height: 40px;
+	}
+	#menu-base, 
+	#menu-hover {
+		position: static;
+	}
+	
+	#menu-base {
+		visibility: visible;
+		display: block;
+	}
+	
+	#menu-hover {
+		display: none;
+		visibility: visible;
 	}
 }
