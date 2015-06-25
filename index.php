@@ -21,9 +21,13 @@ if(!$id)
 				m.active as mediaActive,
 				m.rank
 			FROM
-				(SELECT *
-				FROM objects
-				WHERE objects.active = 1
+				(SELECT objects.*
+				FROM objects, wires
+				WHERE 
+					objects.active = 1
+					AND wires.active = 1
+					AND wires.toid = objects.id
+					AND wires.fromid = '1'
 				ORDER BY modified DESC
 				LIMIT 5) AS o
 			LEFT JOIN media AS m

@@ -18,8 +18,6 @@ body {
 }
 
 header {
-	font-size: 48px;
-	letter-spacing: -1.25px;
 }
 
 .caption {
@@ -54,8 +52,22 @@ a:active {
 	padding: 10px;
 }
 
-#name {
+header {
+	font-size: 48px;
+	letter-spacing: -1.25px;
 	position: fixed;
+	cursor: pointer;
+	line-height: 48px;
+}
+
+#menu-base {
+	position: fixed;
+	visibility: visible;
+}
+
+#menu-hover {
+	position: fixed;
+	visibility: hidden;
 }
 
 #mark {
@@ -65,3 +77,11 @@ a:active {
 	width: 500px;
 }
 
+@media screen and (max-device-width: 568px) {
+	#menu {
+		font-size: 40px;
+		letter-spacing: -1.5px;
+		position: relative;
+		line-height: 40px;
+	}
+}

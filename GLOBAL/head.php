@@ -30,10 +30,21 @@ $doc_title = 'mmm';
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="GLOBAL/global.css">
-	        <script type="text/javascript" src="JS/-animateX.js"></script>
+	    <script type="text/javascript" src="JS/-animateX.js"></script>
 	</head>
 	<body onload="initX();">
 		<div id="page">
-			<header id="name">
-				<a class="r" href="http://mollymcivermanufacturing.us/">mollys</a>
+			<header id="menu">
+				<div id="menu-base">
+					mollys
+				</div>
+				<div id="menu-hover">
+					molly<br>
+					mciver<br>
+					mfg.<br>
+					<a href="/" class="">about</a><br>
+					<a href="/" class="">buy</a><br>
+					<a href="/" class="">support</a><br>
+					<a href="/">updates</a>
+				</div>
 			</header>
