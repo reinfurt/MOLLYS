@@ -50,13 +50,13 @@
 				"0,1,1,0"
 				];
 
-		messages[3] = 	[		// X
+		messages[3] = 	[		// ///
 				"0,0,1,1",
 				"1,0,2,1",
 				"2,0,3,1"
 				];
 	
-		messages[4] = 	[		// M out of order
+		messages[4] = 	[		// M (out of order)
 				"1,0,1,1",
 				"0,0,0.5,0.5",
 				"0.5,0.5,1,0",
@@ -64,10 +64,6 @@
 				];
 
 		delays[0] = 200;
-		delays[1] = 200;
-		delays[2] = 300;
-		delays[3] = 300;
-		delays[4] = 300;
 	
 		var rnd = Math.floor((Math.random() * messages.length));
 
