@@ -2,6 +2,9 @@
 date_default_timezone_set("America/New_York");
 require_once('lib/systemDatabase.php');
 require_once("lib/systemCookie.php");
+require_once("lib/displayNavigation.php");
+
+$host = "http://mollymcivermanufacturing.us";
 
 // parse $id
 $id = $_GET['id'];
@@ -23,6 +26,10 @@ if(!$dev)
 // document header
 $doc_title = 'mmm';
 
+$sql = "SELECT name1 from objects where id = $id";
+$res = MYSQL_QUERY($sql);
+$row = MYSQL_FETCH_ARRAY($res);
+$name = $row['name1'] ? $row['name1'] : "mollys";
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -36,15 +43,15 @@ $doc_title = 'mmm';
 		<div id="page">
 			<header id="menu">
 				<div id="menu-base">
-					mollys
+					<a href="<? echo $host; ?>"><? echo $name; ?></a>
 				</div>
 				<div id="menu-hover">
-					molly<br>
+					<a href="<? echo $host; ?>">molly<br>
 					mciver<br>
 					mfg.<br>
-					<a href="/" class="">about</a><br>
-					<a href="/" class="">buy</a><br>
-					<a href="/" class="">support</a><br>
-					<a href="/">updates</a>
+					<br>
+					<div style="display: inline-block;"><? 
+						displayNavigation(); 
+					?></div>
 				</div>
 			</header>
