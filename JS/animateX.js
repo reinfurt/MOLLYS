@@ -9,22 +9,23 @@
 
 
 // 	globals	
-var u;
-var bgcolor = "#000";
+var u; // = unit
+var bgcolor = "#fff";
 var gridcolor = "#000";
-var linecolor = "#000";
-var pad = 10;
+var linecolor = "#00f";
+var linewidth = 7;
+var pad = linewidth;
+
 var messages = new Array();
-var delays = new Array();
 var timeout;
 var pointer;
 
 var canvas;
-var delay;
+var live;
 var context;
-var live; 
+var delay = 200;
 
-function initX(displayId,animate,delay)
+function loadMessages()
 {
 	// M
 	// m
@@ -34,8 +35,9 @@ function initX(displayId,animate,delay)
 			"0.5,0.5,1,0",
 			"1,0,1,1"
 			];
-
-	messages[1] = 	[		// MMM
+	
+	// MMM
+	messages[1] = 	[		
 			"0,0,0,1",
 			"0,0,.5,.5",
 			".5,.5,1,0",
@@ -49,26 +51,29 @@ function initX(displayId,animate,delay)
 			"2.5,0.5,3,0",
 			"3,0,3,1"
 			];
-
-	messages[2] = 	[		// X
+	
+	// X
+	messages[2] = 	[		
 			"0,0,1,1",
 			"0,1,1,0"
 			];
-
-	messages[3] = 	[		// ///
+	// \\\
+	messages[220] = [		
 			"0,0,1,1",
 			"1,0,2,1",
 			"2,0,3,1"
 			];
 
-	messages[4] = 	[		// M (out of order)
+	// M (out of order)
+	messages[4] = 	[		
 			"1,0,1,1",
 			"0,0,0.5,0.5",
 			"0.5,0.5,1,0",
 			"0,0,0,1"
 			];
 	
-	messages[5] = [			// M-sideways M-M
+	// M-sideways M-M
+	messages[5] = [			
 			"0,0,0,1",
 			"0,0,0.5,0.5",
 			"0.5,0.5,1,0",
@@ -83,7 +88,8 @@ function initX(displayId,animate,delay)
 			"3,1,3,0"
 			];
 	
-	messages[6] = [			// MMM rotated around one box
+	// MMM rotated around one box
+	messages[6] = [			
 			"0,0,0,1",
 			"0,0,0.5,0.5",
 			"0.5,0.5,1,0",
@@ -132,13 +138,15 @@ function initX(displayId,animate,delay)
 			"0,0,1,1"
 			];
 	
-	messages[11] = [		// ok
+	// ok
+	messages[11] = [		
 			"0.5,0.5,1,1",
 			"1,1,1.5,0.5",
 			"1.5,0.5,2,0"
 			];
 	
-	messages[12] = [		// cancel
+	// cancel
+	messages[12] = [		
 			"0,0,1,1",
 			"0,1,1,0"
 			];
@@ -161,7 +169,7 @@ function initX(displayId,animate,delay)
 	
 	// loading
 	// l
-	messages[76] = [		// loading
+	messages[76] = [
 			"0,1,0.5,0.5",
 			"0.5,0.5,1,0",
 			"1,0,1.5,0.5",
@@ -170,56 +178,44 @@ function initX(displayId,animate,delay)
 			"2.5,0.5,3,0"
 			];
 	
+}
 
-	delays[0] = 200;
+function initX(canvasId)
+{
+	loadMessages();
+	
+	// get canvas
+	canvas = document.getElementById(canvasId);
 
-	var rnd = Math.floor((Math.random() * messages.length));
-	//var message = messages[rnd];
-	//var message = messages[messages.length-1];
-	if(!delay)
-		delay = delays[0];
-	canvas = document.getElementById(displayId);
-	
-	
+	// live = the part being drawn
+	// (canvas is larger than what is drawn b/c padding)
 	live = {
 		width: canvas.width, 
 		height: canvas.height
 	};
-
 	canvas.width = live.width+2*pad;
 	canvas.height = live.height+2*pad;
 	canvas.style.width = (canvas.width/2).toString().concat("px");
 	canvas.style.height = (canvas.height/2).toString().concat("px");
+	
 	context = canvas.getContext("2d");
 	u = live.height;
 	pointer = 0;
 
 	context.strokeStyle = linecolor;
 	context.fillStyle = bgcolor;
-// 
-// 	if(animate) {
-// 		clearTimeout(timeout);
-// 		timeout=null;
-// 		if(!delay)
-// 			delay = 50;
-// 
-// 		animateX(canvas,live,context,message,delay);
-// 	} 
-// 	else {
-// 		// do something else
-// 	}
+	context.lineWidth = linewidth;
+	
+	keys = Object.keys(messages);
+	k = keys[Math.floor(keys.length*Math.random())];
+	drawGrid(canvas, live, context);
+	animateX(messages[k]);
 }
 
-
-function animateX(canvas,live,context,message,delay) 
+function animateX(message) 
 {
-	if (pointer < message.length) {
-		console.log(message.length);
-		console.log(pointer);
-
-		// draw bg, grid
-		drawGrid(canvas,live,context);
-
+	if (pointer < message.length) 
+	{
 		// draw lines
 		var points = message[pointer].split(",");
 
@@ -232,28 +228,39 @@ function animateX(canvas,live,context,message,delay)
 		context.setTransform(1, 0, 0, 1, 0, 0);
 
 		pointer++;
-		timeout = setTimeout(function(){animateX(canvas,live,context,message,delay);}, delay);
+		timeout = setTimeout(function(){animateX(message);}, delay);
 
 	} 
-	else {
-		console.log("stop");
-		console.log(startStopAnimateMessage());
-	}
+	else
+		stopAnimateX();
 }
 	
-function startStopAnimateMessage() {
-	if (timeout == null) {
-		// initX("animateX","target",true,delay);
+function stopAnimateX() {
+	if (timeout == null)
 		return true;
-
-	}
-	else {
+	else
+	{
 		clearTimeout(timeout);
 		timeout = null;
 		return false;
 	}
 }
 
+var loadv;
+function startLoad() {
+	loadv = setInterval(load, 1000);
+}
+
+function load() {
+	pointer = 0;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	drawGrid(canvas, live, context);
+	animateX(messages[76]);
+}
+
+function stopLoad() {
+	clearInterval(loadv);
+}
 
 function drawGrid(canvas,live,context) 
 {
@@ -262,18 +269,20 @@ function drawGrid(canvas,live,context)
 	// context.fillRect(0,0,canvas.width,canvas.height);
 
 	// draw circles
-	xgrid = 3;
-	ygrid = 1;
-	radius = 2;
+	//xgrid = 3;
+	//ygrid = 1;
+	radius = linewidth;
 	context.fillStyle = gridcolor;
 	context.translate(pad,pad);
 
 	for (x=0; x<=live.width; x+=u) {
 		for (y=0; y<=live.height; y+=u) {
+			// main points
 			context.beginPath();
 			context.arc(x,y,radius,0,2*Math.PI);
 			context.fill();
-
+			
+			// centre points
 			context.beginPath();
 			context.arc(x+u/2,y+u/2,radius,0,2*Math.PI);
 			context.fill();
@@ -282,38 +291,21 @@ function drawGrid(canvas,live,context)
 	context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-document.onkeydown = function(e) {
-	e = e || window.event;
-	pointer = 0;
-	delay = 200;
-	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	switch(e.which || e.keyCode) {
-		case 27: // m
-			animateX(canvas, live, context, messages[27], delay);
-		break;
-		case 68: // d
-			animateX(canvas, live, context, messages[68], delay);
-		break;
-		case 77: // m
-			animateX(canvas, live, context, messages[77], delay);
-		break;
-		case 74: // j
-			animateX(canvas, live, context, messages[74], delay);
-		break;
-		case 39: // right arrow
-		case 75: // k
-			animateX(canvas, live, context, messages[75], delay);
-		break;
-		case 76: // l
-			animateX(canvas, live, context, messages[76], delay);
-		break;
-		case 69: // l
-			animateX(canvas, live, context, messages[69], delay);
-		break;
-		case 82: // l
-			animateX(canvas, live, context, messages[82], delay);
-		break;
-		default: return;
+document.onkeydown = function(e) {
+	pointer = 0;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	drawGrid(canvas, live, context);
+	
+	e = e || window.event;
+	kc = e.which || e.keyCode;
+	
+	if(kc in messages)
+		animateX(messages[kc]);
+	else
+	{
+		keys = Object.keys(messages);
+		k = keys[Math.floor(keys.length*Math.random())];
+		animateX(messages[k]);
 	}
 }

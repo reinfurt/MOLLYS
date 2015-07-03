@@ -1,10 +1,8 @@
-			<div class = "r" id = "mark">
-				<canvas id="canvas1" width="500" height="50"></canvas>
-				<!-- 
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ 
-				-->
+			<div id="mark">
+				<canvas id="canvas1" width="300" height="100"></canvas>
 			</div>
 			<script>
+			initX("canvas1");
 			var isMobile = {
 					Android: function() {
 						return navigator.userAgent.match(/Android/i);

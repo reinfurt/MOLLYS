@@ -71,6 +71,7 @@ $image_files[] = "";
 $caption[] = "";
 $i = 0; 
 $u = 'http://mollymcivermanufacturing.us/';
+$id_last = 0;
 
 while($myrow = MYSQL_FETCH_ARRAY($result))
 {
@@ -111,19 +112,21 @@ while($myrow = MYSQL_FETCH_ARRAY($result))
 		$images[$i].= $myrow['name1'];
 		$images[$i].= "</div>";
 		$images[$i].= "</div>";
+		$id_last = $myrow['objectsId'];
 	}
 	$i++;
 }
 
 if(count($images) > 0)
 {
-?><div><?
+?><div id="ajax"><?
 $html = "";
 for($i = 0; $i < count($images); $i++)
 	$html.= $images[$i];
 echo $html;
 ?></div>
-<div id="body"><? echo nl2br($obj['body']); ?></div><?
+<div id="body"><? echo nl2br($obj['body']); ?></div>
+<!--button onclick="test(<? echo $id_last; ?>);">ajax hi?</button--><?
 }
 require_once("GLOBAL/foot.php");
 ?>
