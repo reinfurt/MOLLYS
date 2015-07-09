@@ -317,8 +317,7 @@ document.onkeydown = function(e) {
 	
 	e = e || window.event;
 	kc = e.which || e.keyCode;
-	
-	console.log(kc);
+	// console.log(kc);
 
 	if(kc in messages)
 		animateX(messages[kc]);
