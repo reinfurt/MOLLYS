@@ -8,7 +8,7 @@
     </head>
     <body style="background-color:#FFF;">
 		<div>                               
-			<canvas id="canvas1" width="900" height="300"></canvas>
+			<canvas id="canvas1" width="1200" height="100"></canvas>
 		</div>
 		<script>
 			initX('canvas1','false','100');

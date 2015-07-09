@@ -12,7 +12,7 @@
 var u; // = unit
 var bgcolor = "#fff";
 var gridcolor = "#000";
-var linecolor = "#00f";
+var linecolor = "#000";
 var linewidth = 7;
 var pad = linewidth;
 
@@ -177,7 +177,23 @@ function loadMessages()
 			"2,1,2.5,0.5",
 			"2.5,0.5,3,0"
 			];
-	
+
+	// usa
+	// u
+	messages[85] = [
+			"0,0,0,1",
+			"0,1,1,1",
+			"1,1,1,0",
+			"2,0,1,0",
+			"1,0,1,0.5",
+			"1,0.5,2,0.5",
+			"2,0.5,2,1",
+			"2,1,1,1",
+			"2,1,2,0",
+			"2,0,3,0",
+			"3,0,3,1",
+			"3,0.5,2,0.5"
+			];
 }
 
 function initX(canvasId)
@@ -268,6 +284,7 @@ function drawGrid(canvas,live,context)
 	context.fillStyle = bgcolor;
 	// context.fillRect(0,0,canvas.width,canvas.height);
 
+	/*
 	// draw circles
 	//xgrid = 3;
 	//ygrid = 1;
@@ -288,6 +305,7 @@ function drawGrid(canvas,live,context)
 			context.fill();
 		}
 	}
+	*/
 	context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
@@ -300,6 +318,8 @@ document.onkeydown = function(e) {
 	e = e || window.event;
 	kc = e.which || e.keyCode;
 	
+	console.log(kc);
+
 	if(kc in messages)
 		animateX(messages[kc]);
 	else
