@@ -210,28 +210,27 @@ function initX(canvasId)
 		width: canvas.width, 
 		height: canvas.height
 	};
+	
+	u = live.height;
+	
 	canvas.width = live.width+2*pad;
 	canvas.height = live.height+2*pad;
 	canvas.style.width = (canvas.width/2).toString().concat("px");
 	canvas.style.height = (canvas.height/2).toString().concat("px");
 	
 	context = canvas.getContext("2d");
-	u = live.height;
-	pointer = 0;
-
 	context.strokeStyle = linecolor;
 	context.fillStyle = bgcolor;
 	context.lineWidth = linewidth;
 	
 	keys = Object.keys(messages);
 	k = keys[Math.floor(keys.length*Math.random())];
-	drawGrid(canvas, live, context);
-	animateX(messages[k]);
+	animate(k);
 }
 
 function animateX(message) 
 {
-	if (pointer < message.length) 
+	if(pointer < message.length) 
 	{
 		// draw lines
 		var points = message[pointer].split(",");
@@ -246,13 +245,16 @@ function animateX(message)
 
 		pointer++;
 		timeout = setTimeout(function(){animateX(message);}, delay);
-
 	} 
 	else
+	{
 		stopAnimateX();
+		isDrawing = false;
+	}
 }
 	
-function stopAnimateX() {
+function stopAnimateX()
+{
 	if (timeout == null)
 		return true;
 	else
@@ -263,25 +265,39 @@ function stopAnimateX() {
 	}
 }
 
+// animateX helper, of sorts
+var isDrawing = false;
+function animate(kc)
+{
+	if(!isDrawing)
+	{
+		// isDrawing = true;
+		pointer = 0;
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		drawGrid(canvas, live, context);
+		animateX(messages[kc]);
+	}
+}
+
 var loadv;
 var isLoading = false;
-function startLoad() {
+function startLoad()
+{
 	if(!isLoading)
 	{
-		loadv = setInterval(load, 1000);
+		loadv = setInterval(load, 100);
 		isLoading = true;
 		console.log("loading");
 	}
 }
 
-function load() {
-	pointer = 0;
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	drawGrid(canvas, live, context);
-	animateX(messages[76]);
+function load() 
+{
+	animate(76);
 }
 
-function stopLoad() {
+function stopLoad() 
+{
 	if(isLoading)
 	{
 		clearInterval(loadv);
@@ -321,22 +337,18 @@ function drawGrid(canvas,live,context)
 	context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-
-document.onkeydown = function(e) {
-	pointer = 0;
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	drawGrid(canvas, live, context);
-	
+//
+document.onkeydown = function(e)
+{	
 	e = e || window.event;
 	kc = e.which || e.keyCode;
-	// console.log(kc);
 
 	if(kc in messages)
-		animateX(messages[kc]);
+		animate(kc);
 	else
 	{
 		keys = Object.keys(messages);
 		k = keys[Math.floor(keys.length*Math.random())];
-		animateX(messages[k]);
+		animate(k);
 	}
 }

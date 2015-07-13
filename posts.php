@@ -9,8 +9,10 @@ require_once("lib/systemDatabase.php");
 require_once("lib/displayMedia.php");
 
 $page = $_GET['page'];
+$posts_per_page = 5;
+
 if($page)
-	$offset = 5*($page-1);
+	$offset = $posts_per_page*$page;
 else
 	$offset = 0;
 
@@ -22,6 +24,7 @@ $sql = "SELECT
 			o.notes,
 			o.active,
 			o.end,
+			o.modified,
 			m.id AS mediaId,
 			m.type,
 			m.caption,
@@ -38,7 +41,8 @@ $sql = "SELECT
 			ORDER BY modified DESC
 			LIMIT 5 OFFSET $offset) AS o
 		LEFT JOIN media AS m
-		ON o.id = m.object";
+		ON o.id = m.object
+		ORDER BY o.modified DESC";
 
 $result = MYSQL_QUERY($sql);
 $images[] = "";
@@ -72,7 +76,7 @@ while($myrow = MYSQL_FETCH_ARRAY($result))
 		$icStyle .= 'margin: 40px;'; 
 
 		$images[$i] .= "<div ";
-		$images[$i] .= "id='image".$i."' ";
+		$images[$i] .= "id='image".($i+$offset)."' ";
 		$images[$i] .= "style='".$icStyle."' ";
 		$images[$i] .= ">";
 		

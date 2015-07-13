@@ -1,5 +1,5 @@
 // implement infinite scrolling via ajax
-var page = 2;
+var page = 1;
 var isWaiting = false;
 window.onscroll = function(ev) 
 {
@@ -33,16 +33,23 @@ function test()
 		if(xmlhttp.readyState < 4) 
 		{
 			// start loading animation
-			// startLoad();
+			startLoad();
 		}
 		else if(xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 		{
 			// stop loading animation
-			// stopLoad();
+			stopLoad();
 			if(xmlhttp.responseText)
 			{
-				document.getElementById("ajax").innerHTML += xmlhttp.responseText;
+				// load older posts
+				document.getElementById("posts").innerHTML += xmlhttp.responseText;
 				isWaiting = false;
+			}
+			else
+			{
+				// no more posts to load
+				// 'done' animation
+				animate(68);
 			}
 		}
 	}

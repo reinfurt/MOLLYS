@@ -6,7 +6,7 @@ require_once("lib/displayMedia.php");
 $rootid = $ids[0];
 if(!$id)
 {
-	?><div id="ajax"><?
+	?><div id="posts"><?
 	require_once("posts.php");
 	?></div><?
 }
