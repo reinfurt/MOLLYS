@@ -1,33 +1,51 @@
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-       // test();
-       console.log("bottom");
-       // add loading graphic
+// implement infinite scrolling via ajax
+var page = 2;
+var isWaiting = false;
+window.onscroll = function(ev) 
+{
+	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+	// make this so that it is *before* scrolled all the way
+	// to the bottom of the page
+	var scrolledToBottom = (scrollTop + window.innerHeight) >= document.body.scrollHeight;
+	if(!isWaiting && scrolledToBottom)
+	{
+	   	test();
+	   	console.log("bottom");
     }
 };
 
 function test()
 {
-	if(window.XMLHttpRequest) {
+	isWaiting = true;
+	if(window.XMLHttpRequest)
+	{
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp = new XMLHttpRequest();
-	} 
-	else {
+	}
+	else
+	{
 		// code for IE6, IE5
 		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	
-	xmlhttp.onreadystatechange = function() {
-		if(xmlhttp.readyState == 2 || xmlhttp.readyState == 3) {
+	xmlhttp.onreadystatechange = function() 
+	{
+		if(xmlhttp.readyState < 4) 
+		{
 			// start loading animation
-			startLoad();
+			// startLoad();
 		}
-		else if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		else if(xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+		{
 			// stop loading animation
-			stopLoad();
-			document.getElementById("ajax").innerHTML += xmlhttp.responseText;
+			// stopLoad();
+			if(xmlhttp.responseText)
+			{
+				document.getElementById("ajax").innerHTML += xmlhttp.responseText;
+				isWaiting = false;
+			}
 		}
 	}
-	xmlhttp.open("GET", "ajax.php", true);
+	xmlhttp.open("GET", "posts.php?page="+(page++), true);
 	xmlhttp.send();
 }

@@ -170,6 +170,7 @@ function loadMessages()
 	// loading
 	// l
 	messages[76] = [
+			"0,0,0,0",
 			"0,1,0.5,0.5",
 			"0.5,0.5,1,0",
 			"1,0,1.5,0.5",
@@ -263,8 +264,14 @@ function stopAnimateX() {
 }
 
 var loadv;
+var isLoading = false;
 function startLoad() {
-	loadv = setInterval(load, 1000);
+	if(!isLoading)
+	{
+		loadv = setInterval(load, 1000);
+		isLoading = true;
+		console.log("loading");
+	}
 }
 
 function load() {
@@ -275,7 +282,12 @@ function load() {
 }
 
 function stopLoad() {
-	clearInterval(loadv);
+	if(isLoading)
+	{
+		clearInterval(loadv);
+		isLoading = false;
+		console.log("done loading");
+	}
 }
 
 function drawGrid(canvas,live,context) 
