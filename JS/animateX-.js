@@ -7,9 +7,9 @@
 // animate : {true, false}	
 // delay : ## [50]
 
-// globals
 
-var u;
+// 	globals	
+var u; // = unit
 var bgcolor = "#fff";
 var gridcolor = "#000";
 var linecolor = "#000";
@@ -25,8 +25,8 @@ var live;
 var context;
 var delay = 200;
 
-function loadMessages() {
-
+function loadMessages()
+{
 	// M
 	// m
 	messages[77] = 	[		
@@ -170,7 +170,6 @@ function loadMessages() {
 	// loading
 	// l
 	messages[76] = [
-			"0,0,0,0",
 			"0,1,0.5,0.5",
 			"0.5,0.5,1,0",
 			"1,0,1.5,0.5",
@@ -197,8 +196,8 @@ function loadMessages() {
 			];
 }
 
-function initX(canvasId) {
-
+function initX(canvasId)
+{
 	loadMessages();
 	
 	// get canvas
@@ -206,59 +205,33 @@ function initX(canvasId) {
 
 	// live = the part being drawn
 	// (canvas is larger than what is drawn b/c padding)
-	// associative arrays
-
 	live = {
 		width: canvas.width, 
 		height: canvas.height
 	};
-	
-	u = live.height;
-	
 	canvas.width = live.width+2*pad;
 	canvas.height = live.height+2*pad;
 	canvas.style.width = (canvas.width/2).toString().concat("px");
 	canvas.style.height = (canvas.height/2).toString().concat("px");
 	
 	context = canvas.getContext("2d");
+	u = live.height;
+	pointer = 0;
+
 	context.strokeStyle = linecolor;
 	context.fillStyle = bgcolor;
 	context.lineWidth = linewidth;
 	
 	keys = Object.keys(messages);
 	k = keys[Math.floor(keys.length*Math.random())];
-	animate(k);
+	drawGrid(canvas, live, context);
+	animateX(messages[k]);
 }
 
-function animateX(message) {
-
-	if(pointer < message.length) {
- 
-		// * todo * add random color picker (r,y,b) per segment
-		// * fix * cleanup
-		// random color
-
-                whichcolor = Math.floor(3*Math.random());
-
-		switch (whichcolor) {
- 
-			case 0:
-			linecolor="#FF0000";
-			break;
-
-			case 1:
-			linecolor="#0000FF";
-			break;
-
-			case 2:
-			linecolor="#FFFF00";
-			break;
- 
-			default:
-			linecolor="#000000";
-			break;
-		}
-
+function animateX(message) 
+{
+	if (pointer < message.length) 
+	{
 		// draw lines
 		var points = message[pointer].split(",");
 
@@ -272,69 +245,41 @@ function animateX(message) {
 
 		pointer++;
 		timeout = setTimeout(function(){animateX(message);}, delay);
-	} 
-	else {
 
+	} 
+	else
 		stopAnimateX();
-		isDrawing = false;
-	}
 }
 	
 function stopAnimateX() {
-
 	if (timeout == null)
 		return true;
-	else {
-
+	else
+	{
 		clearTimeout(timeout);
 		timeout = null;
 		return false;
 	}
 }
 
-// animateX helper, of sorts
-var isDrawing = false;
-function animate(kc) {
-
-	if(!isDrawing) {
-
-		// isDrawing = true;
-		pointer = 0;
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		drawGrid(canvas, live, context);
-		animateX(messages[kc]);
-	}
-}
-
 var loadv;
-var isLoading = false;
 function startLoad() {
-
-	if(!isLoading) {
-
-		loadv = setInterval(load, 100);
-		isLoading = true;
-		console.log("loading");
-	}
+	loadv = setInterval(load, 1000);
 }
 
 function load() {
-
-	animate(76);
+	pointer = 0;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	drawGrid(canvas, live, context);
+	animateX(messages[76]);
 }
 
 function stopLoad() {
-
-	if(isLoading) {
-
-		clearInterval(loadv);
-		isLoading = false;
-		console.log("done loading");
-	}
+	clearInterval(loadv);
 }
 
-function drawGrid(canvas,live,context) {
-
+function drawGrid(canvas,live,context) 
+{
 	// draw background
 	context.fillStyle = bgcolor;
 	// context.fillRect(0,0,canvas.width,canvas.height);
@@ -364,22 +309,23 @@ function drawGrid(canvas,live,context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-// helper function 
-
-// * todo * replace this with callback which fires at end of reading array
-// to then and only then listen for another keydown
 
 document.onkeydown = function(e) {
+	pointer = 0;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	drawGrid(canvas, live, context);
 	
 	e = e || window.event;
 	kc = e.which || e.keyCode;
+	// console.log(kc);
 
-	if (kc in messages)
-		animate(kc);
-	else {
-
+	if(kc in messages)
+		animateX(messages[kc]);
+	else
+	{
 		keys = Object.keys(messages);
 		k = keys[Math.floor(keys.length*Math.random())];
-		animate(k);
+		animateX(messages[k]);
 	}
 }
+

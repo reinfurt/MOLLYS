@@ -1,5 +1,5 @@
 			<div id="mark">
-				<canvas id="canvas1" width="300" height="100"></canvas>
+				<canvas id="canvas1" width="900" height="300"></canvas>
 			</div>
 			<script>
 			initX("canvas1");
