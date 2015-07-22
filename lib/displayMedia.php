@@ -137,5 +137,4 @@ function displayMediaQuicktime($file, $caption, $style, $link) {
 }
 
 
-
 ?>

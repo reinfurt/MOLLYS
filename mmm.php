@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="GLOBAL/global.css">
         <script type="text/javascript" src="JS/animateX.js"></script>
     </head>
-    <body style="background-color:#FFF;">
+    <body style="background-color:#CCC;">
 		<div>                               
-			<canvas id="canvas1" width="1200" height="100"></canvas>
+			<canvas id="canvas1" width="900" height="300"></canvas>
 		</div>
 		<script>
 			initX('canvas1','false','100');

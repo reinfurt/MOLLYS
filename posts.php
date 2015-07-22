@@ -42,6 +42,7 @@ $sql = "SELECT
 			LIMIT 5 OFFSET $offset) AS o
 		LEFT JOIN media AS m
 		ON o.id = m.object
+		WHERE m.active = 1 
 		ORDER BY o.modified DESC";
 
 $result = MYSQL_QUERY($sql);
@@ -49,7 +50,6 @@ $images[] = "";
 $image_files[] = "";
 $caption[] = "";
 $i = 0; 
-$u = 'http://mollymcivermanufacturing.us/';
 $id_last = 0;
 
 while($myrow = MYSQL_FETCH_ARRAY($result))

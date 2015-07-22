@@ -1,5 +1,4 @@
 <?
-$pageName = basename(__FILE__, ".php");
 require_once("GLOBAL/head.php");
 require_once("lib/displayMedia.php");
 
@@ -46,7 +45,6 @@ else
 	$image_files[] = "";
 	$caption[] = "";
 	$i = 0; 
-	$u = 'http://mollymcivermanufacturing.us/';
 	$id_last = 0;
 
 	while($myrow = MYSQL_FETCH_ARRAY($result))
@@ -57,7 +55,7 @@ else
 			$m_file.= str_pad($myrow["mediaId"], 5, "0", STR_PAD_LEFT);
 			$m_file.= ".".$myrow["type"];
 			$m_caption = strip_tags($myrow["caption"]);
-			$m_style = "width: 100%;";
+	 		$m_style = "width: 100%;";
 			$image_files[$i] = $m_file;
 			$captions[$i] = $m_caption;
 		

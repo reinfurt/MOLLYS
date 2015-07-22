@@ -4,14 +4,11 @@ require_once('lib/systemDatabase.php');
 require_once("lib/systemCookie.php");
 require_once("lib/displayNavigation.php");
 
-$host = "http://www.mollys.us";
-
 // parse $id
 $id = $_GET['id'];
 if(!$id)
 	$id = 0;
-else
-{
+else {
 	$ids = explode(",", $id);
 	$idFull = $id;
 	$id = end($ids);
@@ -25,12 +22,17 @@ if(!$dev)
 
 // document header
 $doc_title = 'mmm';
+$pageName = basename($_SERVER['PHP_SELF'], ".php");
+$u = "http://www.mollys.us";
 
 $sql = "SELECT * from objects where id = $id";
 $res = MYSQL_QUERY($sql);
 $obj = MYSQL_FETCH_ARRAY($res);
 $name = $obj['name1'] ? $obj['name1'] : "mollys";
-?><!DOCTYPE html>
+
+?>
+
+<!DOCTYPE html>
 <html>
 	<head>
 		<title><? echo $doc_title; ?></title>
