@@ -4,7 +4,7 @@ require_once('lib/systemDatabase.php');
 require_once("lib/systemCookie.php");
 require_once("lib/displayNavigation.php");
 
-$host = "http://mollys.us";
+$host = "http://www.mollys.us";
 
 // parse $id
 $id = $_GET['id'];
