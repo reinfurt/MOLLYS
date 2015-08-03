@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Cosmos-medium';
-    src: url('fonts/Cosmos-medium.eot');
-    src: url('fonts/Cosmos-medium.eot?#iefix') format('embedded-opentype'),
-         url('fonts/Cosmos-medium.woff2') format('woff2'),
-         url('fonts/Cosmos-medium.woff') format('woff'),
-         url('fonts/Cosmos-medium.ttf') format('truetype'),
-         url('fonts/cosmos-regular-webfont.svg#cosmosregular') format('svg');
+    font-family: 'cosmos-medium';
+    src: url('fonts/cosmos-medium-webfont.eot');
+    src: url('fonts/cosmos-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cosmos-medium-webfont.woff2') format('woff2'),
+         url('fonts/cosmos-medium-webfont.woff') format('woff'),
+         url('fonts/cosmos-medium-webfont.ttf') format('truetype'),
+         url('fonts/cosmos-medium-webfont.svg#cosmosmedium') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -14,7 +14,7 @@ html {
 }
 
 body {
-	font-family: Cosmos-medium, Helvetica, Arial,sans-serif;
+	font-family: cosmos-medium, Helvetica, Arial,sans-serif;
 	background-color: #CCC;
 }
 
