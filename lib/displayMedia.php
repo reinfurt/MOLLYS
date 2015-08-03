@@ -20,7 +20,10 @@ function displayMedia($file = null, $caption = null, $style = null, $link = null
 		case "swf":
 			$status = displayMediaFlash($file, $caption, $style, $link);
 			break;
+		case "mp4";
 		case "mov":
+			$status = displayMediaVideo($file, $caption, $style, $link);
+			break;
 		case "qt":
 			$status = displayMediaQuicktime($file, $caption, $style, $link);
 			break;
@@ -55,6 +58,81 @@ function displayMediaImg($file, $caption, $style) {
 }
 
 
+
+/* pdf */
+function displayMediaPDF($file, $caption, $style, $link) {
+	$status = false;
+	$media  = "<a href='$file'";
+	if ($style)
+		$media .= " style='$style' "; 
+	if ($caption)
+		$media .= " title='$caption' "; 
+	if (!$link)
+		$link = $file;
+	$media .= " target='_blank'>";
+	$media .= "<img src='MEDIA/pdf.gif'><br/>";
+	$media .= $link;
+	$media .= "</a>";
+	$status = $media;
+	return $status;
+}
+
+/* mp4, mov */
+function displayMediaVideo($file, $caption, $style, $link)
+{
+	$status = false;
+	
+	// video options
+	$autoplay = true;
+	$controls = false;
+	$loop = true;
+	$muted = true;
+	
+	$media = "<video src='$file' ";
+	$media.= "style='$style' ";
+	if($autoplay)
+		$media.= "autoplay ";
+	if($loop)
+		$media.= "loop ";
+	if($controls)
+		$media.= "controls ";
+	if($muted)
+		$media.= "muted ";
+	$media.= "></video>";
+	$status = $media;	
+	return $status;
+}
+
+/* mov, qt */
+function displayMediaQuicktime($file, $caption, $style, $link) {
+
+	$status = false;
+
+	if (!$style) $style = "width: 320px; height: 255px;";
+	if (!$link) $link = $file;
+
+	$media  = "<object classid='clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B' ";
+	$media .= "\n\tcodebase='http://www.apple.com/qtactivex/qtplugin.cab' ";
+	$media .= "\n\tstyle='$style' ";
+	$media .= "\n\tid='$link'>";
+	$media .= "\n\t<param name='src' value='$file' />";
+	$media .= "\n\t<param name='kioskmode' value='true' />";
+	$media .= "\n\t<param name='controller' value='true' />";
+	$media .= "\n\t<embed style='$style' ";
+	$media .= "\n\t\tsrc='$file' ";
+	$media .= "\n\t\tname='$link' ";
+	$media .= "\n\t\tautoplay='true' ";
+	$media .= "\n\t\tcontroller='true' ";
+	$media .= "\n\t\tloop='true' ";
+	//$media .= "\n\t\tkioskmode='true' ";
+	$media .= "\n\t\tenablejavascript='true'>";
+	$media .= "\n\t</embed>";
+	$media .= "\n</object>";
+	$status = $media;
+
+	return $status;
+}
+
 /* swf */
 function displayMediaFlash($file, $caption, $style, $link) {
 
@@ -82,55 +160,6 @@ function displayMediaFlash($file, $caption, $style, $link) {
 	$media .="\n\t\tallowScriptAccess='sameDomain' ";
 	$media .="\n\t\ttype='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />";
 	$media .="\n</object>";
-	$status = $media;
-
-	return $status;
-}
-
-/* pdf */
-function displayMediaPDF($file, $caption, $style, $link) {
-	$status = false;
-	$media  = "<a href='$file'";
-	if ($style)
-		$media .= " style='$style' "; 
-	if ($caption)
-		$media .= " title='$caption' "; 
-	if (!$link)
-		$link = $file;
-	$media .= " target='_blank'>";
-	$media .= "<img src='MEDIA/pdf.gif'><br/>";
-	$media .= $link;
-	$media .= "</a>";
-	$status = $media;
-	return $status;
-}
-
-
-/* mov, qt */
-function displayMediaQuicktime($file, $caption, $style, $link) {
-
-	$status = false;
-
-	if (!$style) $style = "width: 320px; height: 255px;";
-	if (!$link) $link = $file;
-
-	$media  = "<object classid='clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B' ";
-	$media .= "\n\tcodebase='http://www.apple.com/qtactivex/qtplugin.cab' ";
-	$media .= "\n\tstyle='$style' ";
-	$media .= "\n\tid='$link'>";
-	$media .= "\n\t<param name='src' value='$file' />";
-	$media .= "\n\t<param name='kioskmode' value='true' />";
-	$media .= "\n\t<param name='controller' value='true' />";
-	$media .= "\n\t<embed style='$style' ";
-	$media .= "\n\t\tsrc='$file' ";
-	$media .= "\n\t\tname='$link' ";
-	$media .= "\n\t\tautoplay='true' ";
-	$media .= "\n\t\tcontroller='true' ";
-	$media .= "\n\t\tloop='true' ";
-	//$media .= "\n\t\tkioskmode='true' ";
-	$media .= "\n\t\tenablejavascript='true'>";
-	$media .= "\n\t</embed>";
-	$media .= "\n</object>";
 	$status = $media;
 
 	return $status;

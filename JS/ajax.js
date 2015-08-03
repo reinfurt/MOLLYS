@@ -4,8 +4,8 @@ var isWaiting = false;
 window.onscroll = function(ev) 
 {
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-	// make this so that it is *before* scrolled all the way
-	// to the bottom of the page
+	// make this so that it is *before* scrolled 
+	// all the way to the bottom of the page
 	var scrolledToBottom = (scrollTop + window.innerHeight) >= document.body.scrollHeight;
 	if(!isWaiting && scrolledToBottom)
 	{

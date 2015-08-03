@@ -23,12 +23,22 @@ if(!$dev)
 // document header
 $doc_title = 'mmm';
 $pageName = basename($_SERVER['PHP_SELF'], ".php");
-$u = "http://www.mollys.us";
+
+// $u = "http://www.mollys.us";
+// = 'mollys.us'
+// do i need to add http:// to it? 
+// seems like i do
+$u = "http://".$_SERVER['SERVER_NAME'];
 
 $sql = "SELECT * from objects where id = $id";
 $res = MYSQL_QUERY($sql);
 $obj = MYSQL_FETCH_ARRAY($res);
 $name = $obj['name1'] ? $obj['name1'] : "mollys";
+
+// detect mobile
+// $isMobile = (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
+// 				'|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
+// 				'|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT']);
 
 ?>
 
@@ -55,7 +65,7 @@ $name = $obj['name1'] ? $obj['name1'] : "mollys";
 						echo "<br>mollys"; ?>
 				</div>
 				<div id="menu-hover">
-					<a href="<? echo $host; ?>">molly<br>mciver<br>mfg.</a>
+					<a href="<? echo $u; ?>">molly<br>mciver<br>mfg.</a>
 					<br>
 					<br>
 					<div style="display: inline-block;"><? 

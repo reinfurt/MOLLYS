@@ -22,6 +22,7 @@ var isMobile = {
 					isMobile.Windows());
 		}
 	};
+
 var menu = document.getElementById("menu");
 var mb = document.getElementById("menu-base");
 var mh = document.getElementById("menu-hover");

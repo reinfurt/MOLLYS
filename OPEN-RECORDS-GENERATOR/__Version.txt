@@ -17,3 +17,4 @@ Last updated April 23, 2015
 2.9.5 -- August 2014: add date begin field, add notes field
 2.9.6 -- March 2015: add quicktime, mp4 support
 2.9.7 -- April 2015: update link drop-down to reflect o-r-g hierarchy
+2.9.5 -- July 2015: add support for html <video> tag (.mov, .mp4 files)
