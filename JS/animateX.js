@@ -1,4 +1,4 @@
-// animateX
+	// animateX
 //
 // adapted from animateEmoticon.js
 // adapted from animateMessage.js
@@ -10,7 +10,7 @@
 // globals
 
 var u;
-var bgcolor = "#fff";
+var bgcolor = "#FFF";
 var gridcolor = "#000";
 var linecolor = "#000";
 var linewidth = 7;
@@ -22,6 +22,9 @@ var canvas;
 var live;
 var context;
 var delay = 200;
+var isDrawing = false;
+var isLoading = false;
+var loadv;
 
 
 function initX(canvasId) {
@@ -48,7 +51,7 @@ function initX(canvasId) {
 	
 	keys = Object.keys(messages);
 	k = keys[Math.floor(keys.length*Math.random())];
-	animate(k);
+	startAnimateX(k);
 }
 
 
@@ -93,11 +96,15 @@ function animateX(message) {
 	} 
 	else {
 
+		// set new timeout here which pauses before triggering animateX
+		// then also embed all of "animate" in here
+
 		stopAnimateX();
 		isDrawing = false;
                 keys = Object.keys(messages);
                 k = keys[Math.floor(keys.length*Math.random())];
-                animate(k);
+                // animate(k);
+		startAnimateX(k);
 	}
 }
 	
@@ -115,13 +122,9 @@ function stopAnimateX() {
 }
 
 
-// this "helper" is redundant, should remove and use setTimeout only
-// can put all in the stopAnimateX function?
-// make a new function for pausing, then another for starting again?
+function startAnimateX(kc) {
 
-var isDrawing = false;
-
-function animate(kc) {
+	// *todo* add timeout for pause?
 
 	if(!isDrawing) {
 
@@ -134,9 +137,6 @@ function animate(kc) {
 }
 
 	
-var loadv;
-var isLoading = false;
-
 function startLoad() {
 
 	if(!isLoading) {
@@ -151,7 +151,7 @@ function startLoad() {
 
 function load() {
 
-	animate(76);
+	startAnimateX(76);
 }
 
 
@@ -202,12 +202,12 @@ document.onkeydown = function(e) {
 	kc = e.which || e.keyCode;
 
 	if (kc in messages)
-		animate(kc);
+		startAnimateX(kc);
 	else {
 
 		keys = Object.keys(messages);
 		k = keys[Math.floor(keys.length*Math.random())];
-		animate(k);
+		startAnimateX(k);
 	}
 }
 
