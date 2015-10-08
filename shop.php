@@ -1,7 +1,7 @@
 <?
 require_once("GLOBAL/head.php");
 ?><div id="body">
-	<div class="large-text">high-tops</div><?
+	<div class="large-text">High-tops</div><?
 	// high-tops
 	?>
 	<div id="high-tops">
@@ -46,7 +46,7 @@ require_once("GLOBAL/head.php");
 		</form-->
 	</div><?
 	// low-tops
-	?><div class="large-text">or low-tops</div>
+	?><div class="large-text">or Low-tops</div>
 	<div id="low-tops">
 		<object id="low-svg" data="MEDIA/paypal/low.svg" type="image/svg+xml"></object>
 		<!--form 
@@ -87,7 +87,7 @@ require_once("GLOBAL/head.php");
 		</form-->
 	</div>
 	<script src="JS/shop.js"></script>
-	<script>setup();</script>
+	<script>init();</script>
 </div><?
 require_once("GLOBAL/foot.php");
 ?>

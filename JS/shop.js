@@ -1,5 +1,6 @@
 var lsvg;
 var hsvg;
+
 var parts;
 
 var lparts;
@@ -7,7 +8,9 @@ var hparts;
 
 var ltimer;
 var htimer;
-function setup()
+
+// initialise necessary variables
+function init()
 {
 	var low = document.getElementById('low-svg');
 	var high = document.getElementById('high-svg');	
@@ -18,17 +21,20 @@ function setup()
 	
 	// must wait for svg to load
 	low.addEventListener("load", function() {
+		
+		// make svg dom accessible
 		lsvg = low.contentDocument;
 		
-		// store all the relevant parts of the shoe
+		// store all the relevant parts of the shoe svg
 		lparts = {};
 		for(p in parts)
 			lparts[p] = lsvg.getElementsByClassName(parts[p]);
-
+		
 		low.onmouseover = function() {
 			// start rotating colour animation 
 			ltimer = setInterval(lanimate, 500);
 		};
+		
 		low.onmouseout = function() {
 			// end rotation colour animation
 			// store recorded colours somehwere
@@ -37,31 +43,25 @@ function setup()
 	}, false);
 	
 	high.addEventListener("load", function() {
+		
+		// make svg dom accessible
 		hsvg = high.contentDocument;
+		
+		// store all the relevant parts of the shoe svg		
 		hparts = {};
 		for(p in parts)
 			hparts[p] = hsvg.getElementsByClassName(parts[p]);
-
+		
 		high.onmouseover = function() {
 			// start rotating colour animation 
 			htimer = setInterval(hanimate, 500);
 		};
-		
-		high.addEventListener('touchstart', function(e) { 
-			// start rotating colour animation 
-			htimer = setInterval(hanimate, 500);
-		}, false);
 		
 		high.onmouseout = function() {
 			// end rotation colour animation
 			// store recorded colours somehwere
 			clearInterval(htimer);
 		};
-		high.addEventListener('touchend', function(e) { 
-			// end rotation colour animation
-			// store recorded colours somehwere
-			clearInterval(htimer);
-		}, false);
 	}, false);
 }
 
@@ -91,7 +91,10 @@ function lanimate()
 	}
 }
 
-function getRandomColour() {
+// return a string representing a random hex colour, 
+// between #000000 and #FFFFFF
+function getRandomColour() 
+{
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
