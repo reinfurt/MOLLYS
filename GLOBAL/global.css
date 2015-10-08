@@ -97,6 +97,27 @@ header {
 	margin-right: auto;
 }
 
+/* 
+#low-tops {
+	background-image: url("../MEDIA/paypal/low-red.png");
+	background-repeat: no-repeat;
+    background-size: contain;
+}
+ */
+ 
+img.hover {
+	display: none;
+}
+#low-tops:hover .hover,
+#high-tops:hover .hover {
+	display: inline;
+}
+#low-tops:hover .no-hover,
+#high-tops:hover .no-hover {
+	display: none;
+}
+
+
 @media screen and (max-device-width: 568px) {
 	#menu {
 		font-size: 40px;
@@ -117,5 +138,17 @@ header {
 	#menu-hover {
 		display: none;
 		visibility: visible;
+	}
+	
+	a.hover {
+		display: none;
+	}
+	#low-tops:hover .hover,
+	#high-tops:hover .hover {
+		display: none;
+	}
+	#low-tops:hover .no-hover,
+	#high-tops:hover .no-hover {
+		display: inline;
 	}
 }

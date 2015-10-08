@@ -17,9 +17,8 @@ else {
 // dev
 $dev = $_REQUEST['dev'];
 $dev = systemCookie("devCookie", $dev, 0);
-if(!$dev) 
-	die('mmm. . .');
-
+if(!$dev)
+	die("mmm. . . ");
 // document header
 $doc_title = 'mmm';
 $pageName = basename($_SERVER['PHP_SELF'], ".php");
