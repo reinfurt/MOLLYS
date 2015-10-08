@@ -4,16 +4,7 @@ require_once("GLOBAL/head.php");
 	// high-tops
 	?>
 	<div id="high-tops">
-		<img 
-			class="no-hover"
-			src="http://mollys.us/MEDIA/paypal/high-outline.png" 
-			style="width: 100%"
-		>
-		<img 
-			class="hover"
-			src="http://mollys.us/MEDIA/paypal/high-tan.png" 
-			style="width: 100%"
-		>
+		<object id="high-svg" data="MEDIA/paypal/high.svg" type="image/svg+xml"></object>
 		<form 
 			name="addhightops"
 			target="paypal" 
@@ -55,16 +46,7 @@ require_once("GLOBAL/head.php");
 	</div><?
 	// low-tops
 	?><div id="low-tops">
-		<img 
-			class="no-hover" 
-			src="http://mollys.us/MEDIA/paypal/low-outline.png" 
-			style="width: 100%"
-		>
-		<img 
-			class="hover" 
-			src="http://mollys.us/MEDIA/paypal/low-tan.png" 
-			style="width: 100%"
-		>
+		<object id="low-svg" data="MEDIA/paypal/low.svg" type="image/svg+xml"></object>
 		<form 
 			name="addlowtops"
 			target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post"
@@ -102,6 +84,8 @@ require_once("GLOBAL/head.php");
 			</table>
 		</form>
 	</div>
+	<script src="JS/shop.js"></script>
+	<script>setup();</script>
 </div><?
 require_once("GLOBAL/foot.php");
 ?>
