@@ -123,12 +123,12 @@ img.hover {
 }
 
 
-@media screen and (max-device-width: 568px) {
+@media screen and (max-width: 568px) {
 	#menu {
-		font-size: 40px;
+		/*font-size: 40px;*/
 		letter-spacing: -1.5px;
 		position: static;
-		line-height: 40px;
+		/*line-height: 40px;*/
 	}
 	#menu-base, 
 	#menu-hover {

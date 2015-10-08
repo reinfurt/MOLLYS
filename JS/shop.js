@@ -47,21 +47,21 @@ function setup()
 			htimer = setInterval(hanimate, 500);
 		};
 		
-		high.ontouchstart = function() { 
+		high.addEventListener('touchstart', function(e) { 
 			// start rotating colour animation 
 			htimer = setInterval(hanimate, 500);
-		};
+		}, false);
 		
 		high.onmouseout = function() {
 			// end rotation colour animation
 			// store recorded colours somehwere
 			clearInterval(htimer);
 		};
-		high.ontouchend = function() { 
+		high.addEventListener('touchend', function(e) { 
 			// end rotation colour animation
 			// store recorded colours somehwere
 			clearInterval(htimer);
-		}
+		}, false);
 	}, false);
 }
 
