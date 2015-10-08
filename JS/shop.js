@@ -46,11 +46,22 @@ function setup()
 			// start rotating colour animation 
 			htimer = setInterval(hanimate, 500);
 		};
+		
+		high.ontouchstart = function() { 
+			// start rotating colour animation 
+			htimer = setInterval(hanimate, 500);
+		};
+		
 		high.onmouseout = function() {
 			// end rotation colour animation
 			// store recorded colours somehwere
 			clearInterval(htimer);
 		};
+		high.ontouchend = function() { 
+			// end rotation colour animation
+			// store recorded colours somehwere
+			clearInterval(htimer);
+		}
 	}, false);
 }
 

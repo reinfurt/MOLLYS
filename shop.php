@@ -1,11 +1,12 @@
 <?
 require_once("GLOBAL/head.php");
-?><div id="body"><?
+?><div id="body">
+	<div class="large-text">high-tops</div><?
 	// high-tops
 	?>
 	<div id="high-tops">
 		<object id="high-svg" data="MEDIA/paypal/high.svg" type="image/svg+xml"></object>
-		<form 
+		<!--form 
 			name="addhightops"
 			target="paypal" 
 			action="https://www.paypal.com/cgi-bin/webscr" 
@@ -42,12 +43,13 @@ require_once("GLOBAL/head.php");
 					<td><a id="hightops-button" href="javascript:document.addhightops.submit();">add to cart</a></td>
 				</tr>
 			</table>
-		</form>
+		</form-->
 	</div><?
 	// low-tops
-	?><div id="low-tops">
+	?><div class="large-text">or low-tops</div>
+	<div id="low-tops">
 		<object id="low-svg" data="MEDIA/paypal/low.svg" type="image/svg+xml"></object>
-		<form 
+		<!--form 
 			name="addlowtops"
 			target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post"
 		>
@@ -82,7 +84,7 @@ require_once("GLOBAL/head.php");
 					<td><a id="lowtops-button" href="javascript:document.addlowtops.submit();">add to cart</a></td>
 				</tr>
 			</table>
-		</form>
+		</form-->
 	</div>
 	<script src="JS/shop.js"></script>
 	<script>setup();</script>
