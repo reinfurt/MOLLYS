@@ -20,49 +20,54 @@ function init()
 	parts.push('sole');
 	
 	// must wait for svg to load
-	low.addEventListener("load", function() {
+	if(low)
+	{
+		low.addEventListener("load", function() {
 		
-		// make svg dom accessible
-		lsvg = low.contentDocument;
+			// make svg dom accessible
+			lsvg = low.contentDocument;
 		
-		// store all the relevant parts of the shoe svg
-		lparts = {};
-		for(p in parts)
-			lparts[p] = lsvg.getElementsByClassName(parts[p]);
+			// store all the relevant parts of the shoe svg
+			lparts = {};
+			for(p in parts)
+				lparts[p] = lsvg.getElementsByClassName(parts[p]);
 		
-		low.onmouseover = function() {
-			// start rotating colour animation 
-			ltimer = setInterval(lanimate, 500);
-		};
+			low.onmouseover = function() {
+				// start rotating colour animation 
+				ltimer = setInterval(lanimate, 500);
+			};
 		
-		low.onmouseout = function() {
-			// end rotation colour animation
-			// store recorded colours somehwere
-			clearInterval(ltimer);
-		};
-	}, false);
-	
-	high.addEventListener("load", function() {
+			low.onmouseout = function() {
+				// end rotation colour animation
+				// store recorded colours somehwere
+				clearInterval(ltimer);
+			};
+		}, false);
+	}
+	if(high)
+	{	
+		high.addEventListener("load", function() {
 		
-		// make svg dom accessible
-		hsvg = high.contentDocument;
+			// make svg dom accessible
+			hsvg = high.contentDocument;
 		
-		// store all the relevant parts of the shoe svg		
-		hparts = {};
-		for(p in parts)
-			hparts[p] = hsvg.getElementsByClassName(parts[p]);
+			// store all the relevant parts of the shoe svg		
+			hparts = {};
+			for(p in parts)
+				hparts[p] = hsvg.getElementsByClassName(parts[p]);
 		
-		high.onmouseover = function() {
-			// start rotating colour animation 
-			htimer = setInterval(hanimate, 500);
-		};
+			high.onmouseover = function() {
+				// start rotating colour animation 
+				htimer = setInterval(hanimate, 500);
+			};
 		
-		high.onmouseout = function() {
-			// end rotation colour animation
-			// store recorded colours somehwere
-			clearInterval(htimer);
-		};
-	}, false);
+			high.onmouseout = function() {
+				// end rotation colour animation
+				// store recorded colours somehwere
+				clearInterval(htimer);
+			};
+		}, false);
+	}
 }
 
 function hanimate()
