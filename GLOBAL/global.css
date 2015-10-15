@@ -157,3 +157,36 @@ img.hover {
 		display: inline;
 	}
 }
+
+.link {
+	color: #fff;
+    background:none!important;
+    border:none; 
+    font: inherit;
+    padding-left: 0px;
+    padding-right: 0px;
+    /*border is optional*/
+    cursor: pointer;
+    font-size: 48px;
+	letter-spacing: -1.25px;
+	line-height: 48px;
+}
+
+.link:hover {
+	color: #000;
+}
+
+.styled-select select {
+	font: inherit;
+   	padding: 5px;
+   	font-size: 48px;
+   	line-height: 1;
+   	border: 0;
+   	border-radius: 0;
+   	height: 60px;
+   	/*-webkit-appearance: none;*/
+}
+
+div.styled-select {
+	display: inline;
+}

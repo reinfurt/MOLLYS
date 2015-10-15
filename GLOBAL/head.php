@@ -50,7 +50,7 @@ $name = $obj['name1'] ? $obj['name1'] : "mollys";
 		<link rel="stylesheet" href="GLOBAL/global.css">
 	    <script type="text/javascript" src="JS/animateX.js"></script><?
 	    // only load ajax script if on homepage
-	    if(!$id)
+	    if(!$id && $pageName == "index")
 	    {
 	    ?><script type="text/javascript" src="JS/ajax.js"></script><?
 	    }
