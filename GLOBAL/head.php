@@ -5,7 +5,7 @@ require_once("lib/systemCookie.php");
 require_once("lib/displayNavigation.php");
 
 // parse $id
-$id = $_GET['id'];
+$id = $_REQUEST['id'];
 if(!$id)
 	$id = 0;
 else {

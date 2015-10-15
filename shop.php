@@ -2,12 +2,13 @@
 require_once("GLOBAL/head.php");
 
 $action = $_REQUEST['action'];
+$id = $_REQUEST['id'];
 
 $labels = array();
 $labels['M'] = "Men";
 $labels['W'] = "Women";
-$labels['high'] = "High-tops";
-$labels['low'] = "Low-tops";
+$labels['high'] = "High";
+$labels['low'] = "Low";
 
 ?><div id="body"><?
 // choose high tops / low tops
@@ -16,21 +17,24 @@ if(!$action)
 	?><form action="shop.php" method="post">
 		<input name="action" type="hidden" value="style">
 		<input name="style" type="hidden" value="high">
-		<input class="link" type="submit" value="High-tops"><?
-		// high-tops
-		?><div id="high-tops">
-			<object id="high-svg" data="MEDIA/paypal/high.svg" type="image/svg+xml"></object>
-		</div>
+		<input name="id" type="hidden" value="<? echo $id; ?>">
+		<input class="link" type="submit" value="<? echo $labels['high']; ?>">
 	</form>
 	<form action="shop.php" method="post">
 		<input name="action" type="hidden" value="style">
 		<input name="style" type="hidden" value="low">
-		<input class="link" type="submit" value="Low-tops"><?
+		<input name="id" type="hidden" value="<? echo $id; ?>">
+		<input class="link" type="submit" value="<? echo $labels['low']; ?>"><?
 		// low-tops
-		?><div id="low-tops">
+		?>
+		</form>
+		<div id="high-tops">
+			<object id="high-svg" data="MEDIA/paypal/high.svg" type="image/svg+xml"></object>
+		</div>
+		<div id="low-tops">
 			<object id="low-svg" data="MEDIA/paypal/low.svg" type="image/svg+xml"></object>
 		</div>
-	</form><?
+	<?
 }
 else
 {
@@ -45,12 +49,14 @@ else
 	if($action == 'style')
 	{
 		?><form action="shop.php" method="post">
+			<input name="id" type="hidden" value="<? echo $id; ?>">
 			<input name="action" type="hidden" value="gender">
 			<input name="style" type="hidden" value="<? echo $style; ?>">
 			<input name="gender" type="hidden" value="M">
 			<input class="link" type="submit" value="<? echo $labels['M']; ?>">
 		</form>
 		<form action="shop.php" method="post">
+			<input name="id" type="hidden" value="<? echo $id; ?>">
 			<input name="action" type="hidden" value="gender">
 			<input name="style" type="hidden" value="<? echo $style; ?>">
 			<input name="gender" type="hidden" value="W">
@@ -68,6 +74,7 @@ else
 		{
 			$sizes = array(5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5);
 			?><form action="shop.php" method="post">
+				<input name="id" type="hidden" value="<? echo $id; ?>">
 				<input name="action" type="hidden" value="size">
 				<input name="style" type="hidden" value="<? echo $style; ?>">
 				<input name="gender" type="hidden" value="<? echo $gender; ?>">
@@ -79,20 +86,21 @@ else
 						}
 					?></select>
 				</div>
-				<input class="link" type="submit" value="Select">
+				<input class="link" type="submit" value="OK">
 			</form><?
 			echo $img;
 		}
 		else
 		{
 			$size = $_REQUEST['size'];
-			?><div class='large-text'>Size: <? echo $size; ?></div><?
+			?><div class='large-text'><? echo $size; ?></div><?
 			
 			// choose colour
 			if($action == 'size')
 			{		
 				$colours = array("Red", "Blue", "Yellow");
 				?><form action="shop.php" method="post">
+					<input name="id" type="hidden" value="<? echo $id; ?>">
 					<input name="action" type="hidden" value="colour">
 					<input name="style" type="hidden" value="<? echo $style; ?>">
 					<input name="gender" type="hidden" value="<? echo $gender; ?>">
@@ -108,13 +116,13 @@ else
 					echo $img;
 					?><script src="JS/shop.js"></script>
 					<script>init();</script>
-					<input class="link" name="submit" type="submit" value="Select">
+					<input class="link" name="submit" type="submit" value="OK">
 				</form><?
 			}
 			else
 			{
 				$color = $_REQUEST['colour'];
-				?><div class='large-text'>Color: <? echo $color; ?></div><?
+				?><div class='large-text'><? echo $color; ?></div><?
 				
 				// add to paypal cart
 				if($action == 'colour')
@@ -131,12 +139,12 @@ else
 						<input type="hidden" name="on1" value="size">
 						<input type="hidden" name="os1" value="<? echo $size; ?>">
 						<input type="hidden" name="on2" value="color">
-						<input type="hidden" name="os2" value="<? echo $color; ?>">
-						<input class="link" name="submit" type="submit" value="Add to Cart">
-					</form><?
+						<input type="hidden" name="os2" value="<? echo $color; ?>"><?
 					echo $img;
 					?><script src="JS/shop.js"></script>
-					<script>init2('<? echo $color; ?>');</script><?
+					<script>init2('<? echo $color; ?>');</script>
+						<input class="link" name="submit" type="submit" value="Buy now . . .">
+					</form><?
 				}
 				else
 				{
