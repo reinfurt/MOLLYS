@@ -48,7 +48,8 @@ $name = $obj['name1'] ? $obj['name1'] : "mollys";
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="GLOBAL/global.css">
-	    <script type="text/javascript" src="JS/animateX.js"></script><?
+	    <script type="text/javascript" src="JS/animateX.js"></script>
+	    <script type="text/javascript" src="JS/shop.js"></script><?
 	    // only load ajax script if on homepage
 	    if(!$id && $pageName == "index")
 	    {

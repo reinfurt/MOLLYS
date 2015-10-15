@@ -108,16 +108,9 @@ else
 					<input name="solecolour" id="sole-colour" type="hidden" value="">
 					<input name="lacescolour" id="laces-colour" type="hidden" value="">
 					<input name="bodycolour" id="body-colour" type="hidden" value="">
-					<div class="large-text">Color: (click to change)</div>
-					<!--div class="styled-select">
-					<select name="colour"><?
-						foreach($colours as $c) {
-						?><option value="<? echo $c; ?>"><? echo $c; ?></option><?
-						}
-					?></select></div--><?
+					<div class="large-text">Color: (click to change)</div><?
 					echo $img;
-					?><script src="JS/shop.js"></script>
-					<script>init();</script>
+					?><script>init();</script>
 					<input class="link" name="submit" type="submit" value="OK">
 				</form><?
 			}

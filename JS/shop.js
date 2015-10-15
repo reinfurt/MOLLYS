@@ -1,5 +1,5 @@
-var low;
-var high;
+// var low;
+// var high;
 
 var lsvg;
 var hsvg;
@@ -12,11 +12,13 @@ var hparts;
 // var ltimer;
 // var htimer;
 
+
+
 // initialise necessary variables
 function init()
 {
-	low = document.getElementById('low-svg');
-	high = document.getElementById('high-svg');	
+	var low = document.getElementById('low-svg');
+	var high = document.getElementById('high-svg');	
 	
 	parts = new Array();
 	parts.push('laces');
@@ -82,8 +84,8 @@ function init()
 
 function init2(sole, laces, body)
 {
-	low = document.getElementById('low-svg');
-	high = document.getElementById('high-svg');	
+	var low = document.getElementById('low-svg');
+	var high = document.getElementById('high-svg');	
 	parts = new Array();
 	parts.push('sole');
 	parts.push('laces');
