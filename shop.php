@@ -105,7 +105,9 @@ else
 					<input name="style" type="hidden" value="<? echo $style; ?>">
 					<input name="gender" type="hidden" value="<? echo $gender; ?>">
 					<input name="size" type="hidden" value="<? echo $size; ?>">
-					<input name="colour" id="colour" type="hidden" value="">
+					<input name="solecolour" id="sole-colour" type="hidden" value="">
+					<input name="lacescolour" id="laces-colour" type="hidden" value="">
+					<input name="bodycolour" id="body-colour" type="hidden" value="">
 					<div class="large-text">Color: (click to change)</div>
 					<!--div class="styled-select">
 					<select name="colour"><?
@@ -121,8 +123,10 @@ else
 			}
 			else
 			{
-				$color = $_REQUEST['colour'];
-				?><div class='large-text'><? echo $color; ?></div><?
+				$sole_color = $_REQUEST['solecolour'];
+				$laces_color = $_REQUEST['lacescolour'];
+				$body_color = $_REQUEST['bodycolour'];
+				?><div class='large-text'><? echo $body_color;?> </div><?
 				
 				// add to paypal cart
 				if($action == 'colour')
@@ -142,7 +146,7 @@ else
 						<input type="hidden" name="os2" value="<? echo $color; ?>"><?
 					echo $img;
 					?><script src="JS/shop.js"></script>
-					<script>init2('<? echo $color; ?>');</script>
+					<script>init2('<? echo $sole_color; ?>', '<? echo $laces_color; ?>', '<? echo $body_color; ?>');</script>
 						<input class="link" name="submit" type="submit" value="Buy now . . .">
 					</form><?
 				}
