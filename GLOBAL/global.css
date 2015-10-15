@@ -184,7 +184,7 @@ img.hover {
    	border: 0;
    	border-radius: 0;
    	height: 60px;
-   	/*-webkit-appearance: none;*/
+   	-webkit-appearance: none;
 }
 
 div.styled-select {

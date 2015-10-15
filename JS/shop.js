@@ -16,8 +16,8 @@ function init()
 	var high = document.getElementById('high-svg');	
 	parts = new Array();
 	parts.push('laces');
-	parts.push('body');
 	parts.push('sole');
+	parts.push('body');
 	
 	// must wait for svg to load
 	if(low)
@@ -31,17 +31,19 @@ function init()
 			lparts = {};
 			for(p in parts)
 				lparts[p] = lsvg.getElementsByClassName(parts[p]);
-		
-			low.onmouseover = function() {
-				// start rotating colour animation 
-				ltimer = setInterval(lanimate, 500);
-			};
-		
-			low.onmouseout = function() {
-				// end rotation colour animation
-				// store recorded colours somehwere
-				clearInterval(ltimer);
-			};
+			
+			for(key in lparts)
+			{
+				if(lparts.hasOwnProperty(key))
+				{
+					var rgb = getRandomColour();
+					for(var i = 0; i < lparts[key].length; i++)
+					{
+						lparts[key][i].addEventListener("click", function() { setFill("l", key); });
+						lparts[key][i].style.cursor = "pointer";
+					}
+				}
+			}
 		}, false);
 	}
 	if(high)
@@ -56,16 +58,72 @@ function init()
 			for(p in parts)
 				hparts[p] = hsvg.getElementsByClassName(parts[p]);
 		
-			high.onmouseover = function() {
-				// start rotating colour animation 
-				htimer = setInterval(hanimate, 500);
-			};
+			for(key in hparts)
+			{
+				if(hparts.hasOwnProperty(key))
+				{
+					var rgb = getRandomColour();
+					for(var i = 0; i < hparts[key].length; i++)
+					{
+						hparts[key][i].addEventListener("click", function() { setFill("h", key); });
+						hparts[key][i].style.cursor = "pointer";
+					}
+				}
+			}
+		}, false);
+	}
+}
+
+function init2(rgb)
+{
+	var low = document.getElementById('low-svg');
+	var high = document.getElementById('high-svg');	
+	parts = new Array();
+	parts.push('body');
+	
+	// must wait for svg to load
+	if(low)
+	{
+		low.addEventListener("load", function() {
 		
-			high.onmouseout = function() {
-				// end rotation colour animation
-				// store recorded colours somehwere
-				clearInterval(htimer);
-			};
+			// make svg dom accessible
+			lsvg = low.contentDocument;
+		
+			// store all the relevant parts of the shoe svg
+			lparts = {};
+			for(p in parts)
+				lparts[p] = lsvg.getElementsByClassName(parts[p]);
+			
+			for(key in lparts)
+			{
+				if(lparts.hasOwnProperty(key))
+				{
+					for(var i = 0; i < lparts[key].length; i++)
+						lparts[key][i].setAttribute('fill', rgb);
+				}
+			}
+		}, false);
+	}
+	if(high)
+	{	
+		high.addEventListener("load", function() {
+		
+			// make svg dom accessible
+			hsvg = high.contentDocument;
+		
+			// store all the relevant parts of the shoe svg		
+			hparts = {};
+			for(p in parts)
+				hparts[p] = hsvg.getElementsByClassName(parts[p]);
+		
+			for(key in hparts)
+			{
+				if(hparts.hasOwnProperty(key))
+				{
+					for(var i = 0; i < hparts[key].length; i++)
+						hparts[key][i].setAttribute('fill', rgb);
+				}
+			}
 		}, false);
 	}
 }
@@ -94,6 +152,18 @@ function lanimate()
 				lparts[key][i].setAttribute('fill', rgb);
 		}
 	}
+}
+
+function setFill(hl, key)
+{
+	var rgb = getRandomColour();
+	if(hl == "l")
+		parts = lparts;
+	else
+		parts = hparts;
+	for(var i = 0; i < parts[key].length; i++)
+		parts[key][i].setAttribute('fill', rgb);
+	document.getElementById("colour").value = rgb;
 }
 
 // return a string representing a random hex colour, 
