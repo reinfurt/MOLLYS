@@ -68,11 +68,11 @@ function init()
 			{
 				if(hparts.hasOwnProperty(key))
 				{
-					var rgb = getRandomColour();
 					for(var i = 0; i < hparts[key].length; i++)
 					{
 						hparts[key][i].addEventListener("click", function() { setFill("h"); });
 						hparts[key][i].style.cursor = "pointer";
+						console.log('hey!');
 					}
 				}
 			}
