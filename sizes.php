@@ -10,6 +10,9 @@ while(($line = fgetcsv($f)) !== false)
 	$html.="</tr>\n";
 }
 fclose($f);
-?><table><? echo $html; ?></table><?
+?>
+<div id="body">
+	<table><? echo $html; ?></table>
+</div><?
 require_once("GLOBAL/foot.php");
 ?>

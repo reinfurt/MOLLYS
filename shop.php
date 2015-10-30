@@ -48,7 +48,9 @@ else
 	// choose size
 	if($action == 'style')
 	{
-		$sizes = array(5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5);
+		$size_smallest = 37;
+		$size_largest = 44;
+		$inc = 0.5;
 		?><form action="shop.php" method="post">
 			<input name="id" type="hidden" value="<? echo $id; ?>">
 			<input name="action" type="hidden" value="size">
@@ -57,12 +59,15 @@ else
 			<span class="large-text">Size: </span>
 			<div class="styled-select">
 				<select name="size"><?
-					foreach($sizes as $s) {
+					for($s = $size_smallest; $s <= $size_largest; $s+=$inc){
 					?><option value="<? echo $s; ?>"><? echo $s; ?></option><?
 					}
 				?></select>
 			</div>
 			<input class="link" type="submit" value="OK">
+			<div class="large-text">
+				<a href="sizes.php" target="_blank">size guide</a>
+			</div>
 		</form><?
 		echo $img;
 	}
