@@ -1,4 +1,0 @@
-AuthUserFile /usr/home/mollymciver/public_html/mollymcivermanufacturing.us/.htpasswd
-AuthName "OPEN-RECORDS-GENERATOR"
-AuthType Basic
-Require valid-user
